@@ -1,29 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "TrinketsAndStuff",
+  "id": "trinketsandstuff",
   "version": "${version}",
 
-  "name": "TrinketsAndStuff",
+  "name": "trinketsandstuff",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Mallvac",
+    "TheTroQ"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
+    "homepage": "https://mallvac.dev/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/TrinketsAndStuff/icon.png",
+  "icon": "assets/trinketsandstuff/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.crackvacking.TrinketsAndStuff.main"
+      "org.crackvacking.trinketsandstuff.main"
     ]
   },
   "mixins": [
-    "TrinketsAndStuff.mixins.json"
+    "trinketsandstuff.mixins.json"
   ],
 
   "depends": {

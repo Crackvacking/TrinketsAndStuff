@@ -1,4 +1,4 @@
-package org.crackvacking.TrinketsAndStuff;
+package org.crackvacking.trinketsandstuff;
 
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;

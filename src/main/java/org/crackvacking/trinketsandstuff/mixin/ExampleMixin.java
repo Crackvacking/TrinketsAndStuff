@@ -1,6 +1,6 @@
-package org.crackvacking.TrinketsAndStuff.mixin;
+package org.crackvacking.trinketsandstuff.mixin;
 
-import org.crackvacking.TrinketsAndStuff.main;
+import org.crackvacking.trinketsandstuff.main;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
