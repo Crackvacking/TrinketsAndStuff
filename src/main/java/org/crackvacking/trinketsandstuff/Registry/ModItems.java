@@ -10,7 +10,7 @@ public class ModItems {
     public static final testItem testItem = new testItem(new FabricItemSettings().group(ItemGroup.FOOD));
 
     public static void RegisterItems(){
-        Registry.register(Registry.ITEM,new Identifier("testItem","testItem"),testItem);
+        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","testitem"),testItem);
     }
     // Mody powinny być pisane w *python*
 }
