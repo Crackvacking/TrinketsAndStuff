@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,6 +17,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.repositories {
 		maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+		maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -27,7 +28,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18.2:4.0.0'
+
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.18:3.0.80'
 }
 
 processResources {
