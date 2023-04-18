@@ -9,7 +9,10 @@ import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.items.testItem;
 
 public class ModItems {
-    public static final testItem testItem = new testItem(new FabricItemSettings().group(ItemGroup.FOOD));
+
+    private static final ItemGroup TAS = FabricItemGroupBuilder.create(new Identifier("trinketsandstuff", "tas"))
+            .icon(() -> new ItemStack(ModItems.testItem)).build();
+    public static final testItem testItem = new testItem(new FabricItemSettings().group(TAS));
 
     public static void Register(){
         Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","testitem"),testItem);
