@@ -2,6 +2,7 @@ package org.crackvacking.trinketsandstuff;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
+import org.crackvacking.trinketsandstuff.Registry.ModBlocks;
 import org.crackvacking.trinketsandstuff.Registry.ModEntities;
 import org.crackvacking.trinketsandstuff.Registry.ModItems;
 import org.slf4j.Logger;
@@ -14,5 +15,6 @@ public class main implements ModInitializer {
 	public void onInitialize() {
 		ModItems.Register();
 		ModEntities.Register();
+		ModBlocks.Register();
 	}
 }

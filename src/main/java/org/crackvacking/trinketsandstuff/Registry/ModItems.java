@@ -9,6 +9,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.item.runes.*;
 
+import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.runecrafter;
+
+
 public class ModItems {
     private static final ItemGroup TAS = FabricItemGroupBuilder.create(new Identifier("trinketsandstuff", "tas"))
             .icon(() -> new ItemStack(ModItems.aqua)).build();
