@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 public class main implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger("TAS");
-
 	@Override
 	public void onInitialize() {
 		ModItems.Register();

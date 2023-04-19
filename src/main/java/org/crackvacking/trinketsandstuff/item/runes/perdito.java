@@ -1,4 +1,4 @@
-package org.crackvacking.trinketsandstuff.items;
+package org.crackvacking.trinketsandstuff.item.runes;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class yrden extends Item {
+public class perdito extends Item {
 
-    public yrden(Settings settings) {
+    public perdito(Settings settings) {
         super(settings);
     }
     @Override
