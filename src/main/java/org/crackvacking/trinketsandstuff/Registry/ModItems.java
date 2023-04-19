@@ -6,16 +6,16 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.crackvacking.trinketsandstuff.items.testItem;
+import org.crackvacking.trinketsandstuff.items.yrden;
 
 public class ModItems {
 
     private static final ItemGroup TAS = FabricItemGroupBuilder.create(new Identifier("trinketsandstuff", "tas"))
-            .icon(() -> new ItemStack(ModItems.testItem)).build();
-    public static final testItem testItem = new testItem(new FabricItemSettings().group(TAS));
+            .icon(() -> new ItemStack(ModItems.yrden)).build();
+    public static final yrden yrden = new yrden(new FabricItemSettings().group(TAS).maxCount(1));
 
     public static void Register(){
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","testitem"),testItem);
+        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","yrden"),yrden);
     }
     // Mody powinny być pisane w *python*
 }
