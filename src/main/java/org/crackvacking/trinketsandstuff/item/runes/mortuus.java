@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class mortus extends Item {
+public class mortuus extends Item {
 
-    public mortus(Settings settings) {
+    public mortuus(Settings settings) {
         super(settings);
     }
     @Override
@@ -21,9 +21,5 @@ public class mortus extends Item {
         if(!playerEntity.isCreative())
             playerEntity.getStackInHand(hand).decrement(1);
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
-    }
-    @Override
-    public boolean hasGlint(ItemStack stack){
-        return true;
     }
 }

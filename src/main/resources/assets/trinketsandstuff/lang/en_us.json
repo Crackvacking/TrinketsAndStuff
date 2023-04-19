@@ -3,8 +3,10 @@
   "item.trinketsandstuff.aqua":"Aqua Rune",
   "item.trinketsandstuff.caelum":"Caelum Rune",
   "item.trinketsandstuff.igni":"Igni Rune",
-  "item.trinketsandstuff.mortus":"Mortus Rune",
+  "item.trinketsandstuff.mortuus":"Mortuus Rune",
   "item.trinketsandstuff.perdito":"Perdito Rune",
   "item.trinketsandstuff.terra":"Terra Rune",
-  "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff"
+  "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff",
+  "item.trinketsandstuff.runedust":"Rune Dust",
+  "item.trinketsandstuff.runecrafter":"Rune Crafter"
 }

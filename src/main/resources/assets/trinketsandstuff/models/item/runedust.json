@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "trinketsandstuff:item/igni-rune"
+    "layer0": "trinketsandstuff:item/rune-dust"
   }
 }

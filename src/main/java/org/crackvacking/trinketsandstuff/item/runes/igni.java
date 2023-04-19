@@ -22,8 +22,4 @@ public class igni extends Item {
             playerEntity.getStackInHand(hand).decrement(1);
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
     }
-    @Override
-    public boolean hasGlint(ItemStack stack){
-        return true;
-    }
 }
