@@ -59,7 +59,13 @@ public class runecrafterblock extends BlockWithEntity implements BlockEntityProv
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext context) {
-        return VoxelShapes.cuboid(0f, 0f, 0f, 0.875f, 0.8125f, 0.875f).offset(0.0625f, 0f, 0.0625f);
+        return VoxelShapes.union(VoxelShapes.cuboid(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.8125),
+                                 VoxelShapes.cuboid(0.375, 0.0625, 0.375, 0.625, 0.75, 0.625),
+                                 VoxelShapes.cuboid(0.0625, 0.75, 0.0625, 0.9375, 0.8125, 0.9375),
+                                 VoxelShapes.cuboid(0.3125, 0.0625, 0.3125, 0.375, 0.75, 0.375),
+                                 VoxelShapes.cuboid(0.3125, 0.0625, 0.625, 0.375, 0.75, 0.6875),
+                                 VoxelShapes.cuboid(0.625, 0.0625, 0.625, 0.6875, 0.75, 0.6875),
+                                 VoxelShapes.cuboid(0.625, 0.0625, 0.3125, 0.6875, 0.75, 0.375));
     }
 
 

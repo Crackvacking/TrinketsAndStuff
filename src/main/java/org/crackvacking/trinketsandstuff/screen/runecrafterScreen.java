@@ -17,6 +17,13 @@ public class runecrafterScreen extends HandledScreen<runecrafterScreenHandler> {
     }
 
     @Override
+    protected void init(){
+        super.init();
+        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        titleY = -10;
+        playerInventoryTitleX = -32767;
+    }
+    @Override
     protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -24,6 +31,11 @@ public class runecrafterScreen extends HandledScreen<runecrafterScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+
+        if(handler.isCrafting()){
+            drawTexture(matrices, x + 42, y + 11, 176, 0, 6, handler.getScaledProgress());
+            drawTexture(matrices, x + 129, y + 11, 176, 0, 6, handler.getScaledProgress());
+        }
     }
 
     @Override
