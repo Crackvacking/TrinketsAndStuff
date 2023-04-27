@@ -1,0 +1,32 @@
+{
+  "type": "trinketsandstuff:runecrafter",
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    },
+    {
+      "item": ""
+    }
+  ],
+  "output": {
+    "item": "trinketsandstuff:igni"
+  }
+}

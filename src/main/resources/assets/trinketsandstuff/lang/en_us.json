@@ -1,3 +1,13 @@
 {
-  "item.trinketsandstuff.testitem":"TestItem"
+  "item.trinketsandstuff.anima":"Anima Rune",
+  "item.trinketsandstuff.aqua":"Aqua Rune",
+  "item.trinketsandstuff.caelum":"Caelum Rune",
+  "item.trinketsandstuff.igni":"Igni Rune",
+  "item.trinketsandstuff.mortuus":"Mortuus Rune",
+  "item.trinketsandstuff.perdito":"Perdito Rune",
+  "item.trinketsandstuff.terra":"Terra Rune",
+  "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff",
+  "item.trinketsandstuff.runedust":"Rune Dust",
+  "block.trinketsandstuff.runecrafter":"Rune Crafter",
+  "gui.trinketsandstuff.runecrafter":"Rune Crafter"
 }
