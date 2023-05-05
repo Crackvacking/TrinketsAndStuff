@@ -11,11 +11,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
+import org.crackvacking.trinketsandstuff.block.entity.runecrafterblockentity;
 
 public class runecrafterRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems;
+
+    private runecrafterblockentity runecrafter;
 
     public runecrafterRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
@@ -81,8 +84,16 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(8, Ingredient.EMPTY);
 
+
+
             for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+                System.out.println(ingredients.get(i).toString());
+                if (ingredients.get(i).toString().equals("{\"item\":\"\"}") || ingredients.get(i).toString().equals("{\"item\":\"minecraft:air\"}")){
+                    inputs.set(i, Ingredient.EMPTY);
+                }
+                else{
+                    inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
+                }
             }
 
             return new runecrafterRecipe(id, output, inputs);

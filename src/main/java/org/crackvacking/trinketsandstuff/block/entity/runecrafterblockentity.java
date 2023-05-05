@@ -23,6 +23,8 @@ import org.crackvacking.trinketsandstuff.item.inventory.ImplementedInventory;
 import org.crackvacking.trinketsandstuff.recipe.runecrafterRecipe;
 import org.crackvacking.trinketsandstuff.screen.runecrafterScreenHandler;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Optional;
 
@@ -32,7 +34,7 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress=72;
+    public int maxProgress=72;
 
     public runecrafterblockentity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.runecrafter_block_entity, pos, state);
@@ -113,7 +115,13 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
 
         Optional<runecrafterRecipe> match = world.getRecipeManager()
                 .getFirstMatch(runecrafterRecipe.Type.INSTANCE, inventory, world);
+        try{
+            System.out.println(world.getRecipeManager().getFirstMatch(runecrafterRecipe.Type.INSTANCE, inventory, world).get().getId());
+        }
+        catch (Exception ignored){
 
+        }
+        
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getOutput());
     }
