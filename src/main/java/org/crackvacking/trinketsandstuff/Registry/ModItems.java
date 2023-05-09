@@ -36,5 +36,4 @@ public class ModItems {
         Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","runedust"),runedust);
         Registry.register(Registry.ITEM, new Identifier("trinketsandstuff", "runecrafter"), new BlockItem(runecrafter, new FabricItemSettings().group(TAS).maxCount(1)));
     }
-    // Mody powinny być pisane w *python*
 }

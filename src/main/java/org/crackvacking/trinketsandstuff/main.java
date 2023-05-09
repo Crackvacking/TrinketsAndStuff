@@ -1,12 +1,8 @@
 package org.crackvacking.trinketsandstuff;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import org.crackvacking.trinketsandstuff.Registry.ModBlocks;
-import org.crackvacking.trinketsandstuff.Registry.ModEntities;
-import org.crackvacking.trinketsandstuff.Registry.ModItems;
-import org.crackvacking.trinketsandstuff.Registry.ModRecipes;
+import org.crackvacking.trinketsandstuff.Registry.*;
 import org.crackvacking.trinketsandstuff.block.entity.ModBlockEntities;
 import org.crackvacking.trinketsandstuff.screen.ModScreenHandlers;
 import org.crackvacking.trinketsandstuff.screen.runecrafterScreen;
@@ -22,8 +18,9 @@ public class main implements ModInitializer {
 		ModItems.Register();
 		ModEntities.Register();
 		ModBlocks.Register();
+		ModRecipes.Register();
+		ModCommands.Register();
 		ModBlockEntities.registerAllBlockEntities();
 		HandledScreens.register(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER, runecrafterScreen::new);
-		ModRecipes.Register();
 	}
 }
