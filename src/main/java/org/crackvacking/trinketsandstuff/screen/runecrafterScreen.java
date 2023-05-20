@@ -33,8 +33,8 @@ public class runecrafterScreen extends HandledScreen<runecrafterScreenHandler> {
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         if(handler.isCrafting()){
-            drawTexture(matrices, x + 42, y + 11, 176, 0, 6, handler.getScaledProgress());
-            drawTexture(matrices, x + 129, y + 11, 176, 0, 6, handler.getScaledProgress());
+            drawTexture(matrices, x + 16, y + 4, 176, 4, 24, handler.getScaledProgress());
+            drawTexture(matrices, x + 137, y + 4, 201, 4, 24, handler.getScaledProgress());
         }
     }
 
