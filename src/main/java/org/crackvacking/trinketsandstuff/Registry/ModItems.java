@@ -10,8 +10,7 @@ import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.item.runes.*;
 import org.lwjgl.system.CallbackI;
 
-import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.manastone;
-import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.runecrafter;
+import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.*;
 
 
 public class ModItems {
@@ -38,5 +37,6 @@ public class ModItems {
         Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","runedust"),runedust);
         Registry.register(Registry.ITEM,new Identifier("trinketsandstuff", "runecrafter"), new BlockItem(runecrafter, new FabricItemSettings().group(TAS).maxCount(1)));
         Registry.register(Registry.ITEM,new Identifier("trinketsandstuff", "manastone"), new BlockItem(manastone, new FabricItemSettings().group(TAS)));
+        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff", "managlass"), new BlockItem(managlass, new FabricItemSettings().group(TAS)));
     }
 }
