@@ -1,7 +1,6 @@
 package org.crackvacking.trinketsandstuff.item.tools;
 
 import net.minecraft.item.Item;
-import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;

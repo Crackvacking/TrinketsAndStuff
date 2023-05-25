@@ -10,7 +10,6 @@ import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.item.client.wandRenderer;
 import org.crackvacking.trinketsandstuff.item.runes.*;
 import org.crackvacking.trinketsandstuff.item.tools.wand;
-import org.lwjgl.system.CallbackI;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
 import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.*;
