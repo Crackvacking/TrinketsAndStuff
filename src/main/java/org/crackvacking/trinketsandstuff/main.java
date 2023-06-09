@@ -1,9 +1,12 @@
 package org.crackvacking.trinketsandstuff;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import org.crackvacking.trinketsandstuff.Registry.*;
 import org.crackvacking.trinketsandstuff.block.entity.ModBlockEntities;
+import org.crackvacking.trinketsandstuff.client.ManaHudOverlay;
+import org.crackvacking.trinketsandstuff.networking.ModMessages;
 import org.crackvacking.trinketsandstuff.screen.ModScreenHandlers;
 import org.crackvacking.trinketsandstuff.screen.runecrafterScreen;
 import org.slf4j.Logger;
@@ -21,6 +24,12 @@ public class main implements ModInitializer {
 		ModRecipes.Register();
 		ModCommands.Register();
 		ModBlockEntities.registerAllBlockEntities();
+
+		ModMessages.registerS2CPackets();
+		ModMessages.registerC2SPackets();
+
+		// move this to another class later
 		HandledScreens.register(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER, runecrafterScreen::new);
+		HudRenderCallback.EVENT.register(new ManaHudOverlay());
 	}
 }
