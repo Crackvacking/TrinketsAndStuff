@@ -87,7 +87,6 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
 
 
             for (int i = 0; i < inputs.size(); i++) {
-                System.out.println(ingredients.get(i).toString());
                 if (ingredients.get(i).toString().equals("{\"item\":\"\"}") || ingredients.get(i).toString().equals("{\"item\":\"minecraft:air\"}")){
                     inputs.set(i, Ingredient.EMPTY);
                 }

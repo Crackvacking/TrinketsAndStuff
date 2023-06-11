@@ -15,6 +15,9 @@ public class ManaC2SPacket {
     public static void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender){
         ManaControll.syncMana(((IEntityDataSaver) player).getPersistentData().getInt("mana")-1, player);
         ManaControll.syncMana(((IEntityDataSaver) player).getPersistentData().getInt("mana")+1, player);
+
+        ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")+1, player);
+        ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")-1, player);
         player.sendMessage(new LiteralText("[LOG] Mana Status Updated!").fillStyle(Style.EMPTY.withColor(Formatting.AQUA)), false);
     }
 }
