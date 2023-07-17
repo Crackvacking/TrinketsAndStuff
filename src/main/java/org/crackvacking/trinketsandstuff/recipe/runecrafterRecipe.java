@@ -87,12 +87,14 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
 
 
             for (int i = 0; i < inputs.size(); i++) {
-                if (ingredients.get(i).toString().equals("{\"item\":\"\"}") || ingredients.get(i).toString().equals("{\"item\":\"minecraft:air\"}")){
-                    inputs.set(i, Ingredient.EMPTY);
-                }
-                else{
+                //dżyździg debil XD
+                //if (ingredients.get(i).toString().equals("{\"item\":\"\"}") || ingredients.get(i).toString().equals("{\"item\":\"minecraft:air\"}")){
+                //    inputs.set(i, Ingredient.EMPTY);
+                //}
+
+                if(!ingredients.get(i).isJsonNull())
                     inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-                }
+
             }
 
             return new runecrafterRecipe(id, output, inputs);
