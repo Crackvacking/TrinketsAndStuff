@@ -7,21 +7,22 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import org.crackvacking.trinketsandstuff.block.mana_glass;
-import org.crackvacking.trinketsandstuff.block.manastone;
-import org.crackvacking.trinketsandstuff.block.runecrafterblock;
+import org.crackvacking.trinketsandstuff.block.ManaGlass;
+import org.crackvacking.trinketsandstuff.block.Manastone;
+import org.crackvacking.trinketsandstuff.block.RunecrafterBlock;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
 
 public class ModBlocks {
 
-    public static final runecrafterblock runecrafter = new runecrafterblock(FabricBlockSettings.of(Material.STONE).hardness(0.69f));
-    public static final manastone manastone = new manastone(FabricBlockSettings.of(Material.STONE).strength(2f, 4.2f).luminance(5).requiresTool());
-    public static final mana_glass managlass = new mana_glass(FabricBlockSettings.of(Material.GLASS).strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque());
+    public static final RunecrafterBlock runecrafter = new RunecrafterBlock(FabricBlockSettings.of(Material.STONE).hardness(0.69f));
+    public static final Manastone manastone = new Manastone(FabricBlockSettings.of(Material.STONE).strength(2f, 4.2f).luminance(5).requiresTool());
+    public static final ManaGlass managlass = new ManaGlass(FabricBlockSettings.of(Material.GLASS).strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque());
 
 
     public static void Register() {
-        Registry.register(Registry.BLOCK, new Identifier("trinketsandstuff", "runecrafter"), runecrafter);
-        Registry.register(Registry.BLOCK, new Identifier("trinketsandstuff", "manastone"), manastone);
+        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "runecrafter"), runecrafter);
+        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "manastone"), manastone);
         BlockRenderLayerMap.INSTANCE.putBlock(managlass, RenderLayer.getTranslucent());
-        Registry.register(Registry.BLOCK, new Identifier("trinketsandstuff", "managlass"), managlass);
+        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "managlass"), managlass);
     }
 }

@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class anima extends Item {
+public class Caelum extends Item {
 
-    public anima(Settings settings) {
+    public Caelum(Settings settings) {
         super(settings);
     }
     @Override

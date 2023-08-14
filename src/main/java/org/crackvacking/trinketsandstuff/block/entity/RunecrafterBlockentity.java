@@ -2,33 +2,27 @@ package org.crackvacking.trinketsandstuff.block.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.crackvacking.trinketsandstuff.item.inventory.ImplementedInventory;
-import org.crackvacking.trinketsandstuff.recipe.runecrafterRecipe;
-import org.crackvacking.trinketsandstuff.screen.runecrafterScreenHandler;
-import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.crackvacking.trinketsandstuff.recipe.RunecrafterRecipe;
+import org.crackvacking.trinketsandstuff.screen.RunecrafterScreenHandler;
 
 import java.util.Optional;
 
-public class runecrafterblockentity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory =
             DefaultedList.ofSize(9, ItemStack.EMPTY);
 
@@ -36,15 +30,15 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
     private int progress = 0;
     public int maxProgress=72;
 
-    public runecrafterblockentity(BlockPos pos, BlockState state) {
+    public RunecrafterBlockentity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.runecrafter_block_entity, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
                 switch (index) {
                     case 0:
-                        return runecrafterblockentity.this.progress;
+                        return RunecrafterBlockentity.this.progress;
                     case 1:
-                        return runecrafterblockentity.this.maxProgress;
+                        return RunecrafterBlockentity.this.maxProgress;
                     default:
                         return 0;
                 }
@@ -53,10 +47,10 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
             public void set(int index, int value) {
                 switch (index) {
                     case 0:
-                        runecrafterblockentity.this.progress = value;
+                        RunecrafterBlockentity.this.progress = value;
                         break;
                     case 1:
-                        runecrafterblockentity.this.maxProgress = value;
+                        RunecrafterBlockentity.this.maxProgress = value;
                         break;
                 }
             }
@@ -75,10 +69,9 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
         return new TranslatableText("gui.trinketsandstuff.runecrafter");
     }
 
-    @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new runecrafterScreenHandler(syncId, inv, this,this.propertyDelegate);
+        return new RunecrafterScreenHandler(syncId, inv, this,this.propertyDelegate);
     }
 
     @Override
@@ -95,7 +88,7 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
         progress = nbt.getInt("crafting.progress");
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, runecrafterblockentity entity) {
+    public static void tick(World world, BlockPos pos, BlockState state, RunecrafterBlockentity entity) {
         if(hasRecipe(entity)) {
                 entity.progress++;
                 if(entity.progress > entity.maxProgress) {
@@ -106,17 +99,17 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
             entity.resetProgress();
         }
     }
-    private static boolean hasRecipe(runecrafterblockentity entity) {
+    private static boolean hasRecipe(RunecrafterBlockentity entity) {
         World world = entity.world;
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<runecrafterRecipe> match = world.getRecipeManager()
-                .getFirstMatch(runecrafterRecipe.Type.INSTANCE, inventory, world);
+        Optional<RunecrafterRecipe> match = world.getRecipeManager()
+                .getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world);
         try{
-            System.out.println(world.getRecipeManager().getFirstMatch(runecrafterRecipe.Type.INSTANCE, inventory, world).get().getId());
+            System.out.println(world.getRecipeManager().getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world).get().getId());
         }
         catch (Exception ignored){
 
@@ -126,15 +119,15 @@ public class runecrafterblockentity extends BlockEntity implements NamedScreenHa
                 && canInsertItemIntoOutputSlot(inventory, match.get().getOutput());
     }
 
-    private static void craftItem(runecrafterblockentity entity) {
+    private static void craftItem(RunecrafterBlockentity entity) {
         World world = entity.world;
         SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
         for (int i = 0; i < entity.inventory.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<runecrafterRecipe> match = world.getRecipeManager()
-                .getFirstMatch(runecrafterRecipe.Type.INSTANCE, inventory, world);
+        Optional<RunecrafterRecipe> match = world.getRecipeManager()
+                .getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world);
 
         if(match.isPresent()) {
             entity.removeStack(1,1);

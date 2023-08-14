@@ -8,16 +8,18 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class runeDust extends Item {
-    public runeDust(Settings settings) {super(settings);}
+public class Mortuus extends Item {
+
+    public Mortuus(Settings settings) {
+        super(settings);
+    }
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
 
-        playerEntity.playSound(SoundEvents.BLOCK_CALCITE_STEP,1F,1F);
+        playerEntity.playSound(SoundEvents.ENTITY_ENDER_EYE_DEATH,1F,1F);
 
         if(!playerEntity.isCreative())
             playerEntity.getStackInHand(hand).decrement(1);
         return TypedActionResult.success(playerEntity.getStackInHand(hand));
     }
-
 }

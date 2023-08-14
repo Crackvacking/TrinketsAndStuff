@@ -18,6 +18,7 @@ public class ManaC2SPacket {
 
         ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")+1, player);
         ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")-1, player);
+        // this is only for debug purposes - delete in release
         player.sendMessage(new LiteralText("[LOG] Mana Status Updated!").fillStyle(Style.EMPTY.withColor(Formatting.AQUA)), false);
     }
 }

@@ -2,7 +2,6 @@ package org.crackvacking.trinketsandstuff.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -11,16 +10,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.crackvacking.trinketsandstuff.block.entity.runecrafterblockentity;
+import org.crackvacking.trinketsandstuff.block.entity.RunecrafterBlockentity;
 
-public class runecrafterRecipe implements Recipe<SimpleInventory> {
+public class RunecrafterRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems;
 
-    private runecrafterblockentity runecrafter;
+    private RunecrafterBlockentity runecrafter;
 
-    public runecrafterRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
+    public RunecrafterRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
@@ -66,19 +65,19 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<runecrafterRecipe> {
+    public static class Type implements RecipeType<RunecrafterRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "runecrafter";
     }
 
-    public static class Serializer implements RecipeSerializer<runecrafterRecipe> {
+    public static class Serializer implements RecipeSerializer<RunecrafterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "runecrafter";
         // this is the name given in the json file
 
         @Override
-        public runecrafterRecipe read(Identifier id, JsonObject json) {
+        public RunecrafterRecipe read(Identifier id, JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
@@ -87,21 +86,16 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
 
 
             for (int i = 0; i < inputs.size(); i++) {
-                //dżyździg debil XD
-                //if (ingredients.get(i).toString().equals("{\"item\":\"\"}") || ingredients.get(i).toString().equals("{\"item\":\"minecraft:air\"}")){
-                //    inputs.set(i, Ingredient.EMPTY);
-                //}
-
                 if(!ingredients.get(i).isJsonNull())
                     inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
 
             }
 
-            return new runecrafterRecipe(id, output, inputs);
+            return new RunecrafterRecipe(id, output, inputs);
         }
 
         @Override
-        public runecrafterRecipe read(Identifier id, PacketByteBuf buf) {
+        public RunecrafterRecipe read(Identifier id, PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -109,11 +103,11 @@ public class runecrafterRecipe implements Recipe<SimpleInventory> {
             }
 
             ItemStack output = buf.readItemStack();
-            return new runecrafterRecipe(id, output, inputs);
+            return new RunecrafterRecipe(id, output, inputs);
         }
 
         @Override
-        public void write(PacketByteBuf buf, runecrafterRecipe recipe) {
+        public void write(PacketByteBuf buf, RunecrafterRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);

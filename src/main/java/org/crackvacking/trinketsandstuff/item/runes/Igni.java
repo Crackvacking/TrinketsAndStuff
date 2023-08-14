@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class mortuus extends Item {
+public class Igni extends Item {
 
-    public mortuus(Settings settings) {
+    public Igni(Settings settings) {
         super(settings);
     }
     @Override

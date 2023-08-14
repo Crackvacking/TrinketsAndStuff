@@ -7,12 +7,13 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
 
-public class runecrafterScreen extends HandledScreen<runecrafterScreenHandler> {
+public class RunecrafterScreen extends HandledScreen<RunecrafterScreenHandler> {
     private static final Identifier TEXTURE =
-            new Identifier("trinketsandstuff", "textures/gui/runecrafter.png");
+            new Identifier(ModConstants.MODID, "textures/gui/runecrafter.png");
 
-    public runecrafterScreen(runecrafterScreenHandler handler, PlayerInventory inventory, Text title) {
+    public RunecrafterScreen(RunecrafterScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 

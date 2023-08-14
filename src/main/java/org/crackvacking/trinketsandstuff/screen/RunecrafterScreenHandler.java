@@ -11,13 +11,13 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import org.crackvacking.trinketsandstuff.screen.slot.ModResultSlot;
 
-public class runecrafterScreenHandler extends ScreenHandler {
+public class RunecrafterScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
-    public runecrafterScreenHandler(int syncId, PlayerInventory playerInventory) {
+    public RunecrafterScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId,playerInventory,new SimpleInventory(9),new ArrayPropertyDelegate(9));
     }
-    public runecrafterScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+    public RunecrafterScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER,syncId);
         checkSize(inventory,9);
         this.inventory = inventory;

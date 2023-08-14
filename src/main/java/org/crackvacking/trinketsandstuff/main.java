@@ -8,7 +8,7 @@ import org.crackvacking.trinketsandstuff.block.entity.ModBlockEntities;
 import org.crackvacking.trinketsandstuff.client.ManaHudOverlay;
 import org.crackvacking.trinketsandstuff.networking.ModMessages;
 import org.crackvacking.trinketsandstuff.screen.ModScreenHandlers;
-import org.crackvacking.trinketsandstuff.screen.runecrafterScreen;
+import org.crackvacking.trinketsandstuff.screen.RunecrafterScreen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class main implements ModInitializer {
 		ModMessages.registerC2SPackets();
 
 		// move this to another class later
-		HandledScreens.register(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER, runecrafterScreen::new);
+		HandledScreens.register(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER, RunecrafterScreen::new);
 		HudRenderCallback.EVENT.register(new ManaHudOverlay());
 	}
 }

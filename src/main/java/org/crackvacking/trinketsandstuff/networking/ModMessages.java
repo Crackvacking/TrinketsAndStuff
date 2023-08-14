@@ -6,11 +6,12 @@ import net.minecraft.util.Identifier;
 import org.crackvacking.trinketsandstuff.networking.packet.ManaC2SPacket;
 import org.crackvacking.trinketsandstuff.networking.packet.ManaLimitSyncDataS2CPacket;
 import org.crackvacking.trinketsandstuff.networking.packet.ManaSyncDataS2CPacket;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
 
 public class ModMessages {
-    public static final Identifier MANA_SYNC_ID = new Identifier("trinketsandstuff", "mana_sync");
-    public static final Identifier MANA_LIMIT_SYNC_ID = new Identifier("trinketsandstuff", "mana_limit");
-    public static final Identifier MANA_ID = new Identifier("trinketsandstuff", "mana");
+    public static final Identifier MANA_SYNC_ID = new Identifier(ModConstants.MODID, "mana_sync");
+    public static final Identifier MANA_LIMIT_SYNC_ID = new Identifier(ModConstants.MODID, "mana_limit");
+    public static final Identifier MANA_ID = new Identifier(ModConstants.MODID, "mana");
 
     public static void registerS2CPackets(){
         ClientPlayNetworking.registerGlobalReceiver(MANA_SYNC_ID, ManaSyncDataS2CPacket::receive);

@@ -10,10 +10,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-public class wand extends Item implements IAnimatable {
+public class Wand extends Item implements IAnimatable {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
 
-    public wand(Settings settings) {
+    public Wand(Settings settings) {
         super(settings);
     }
 

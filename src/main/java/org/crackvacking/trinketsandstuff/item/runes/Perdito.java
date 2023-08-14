@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class perdito extends Item {
+public class Perdito extends Item {
 
-    public perdito(Settings settings) {
+    public Perdito(Settings settings) {
         super(settings);
     }
     @Override

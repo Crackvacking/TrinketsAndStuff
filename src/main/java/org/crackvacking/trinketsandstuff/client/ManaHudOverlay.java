@@ -10,11 +10,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.client.gui.DrawableHelper;
 import org.crackvacking.trinketsandstuff.util.IEntityDataSaver;
 import org.crackvacking.trinketsandstuff.util.ManaControll;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
 
 import static org.crackvacking.trinketsandstuff.Registry.ModItems.wand;
 
 public class ManaHudOverlay implements HudRenderCallback {
-    public static final Identifier MANA_HUD = new Identifier("trinketsandstuff", "textures/gui/manabar_anim.png");
+    public static final Identifier MANA_HUD = new Identifier(ModConstants.MODID, "textures/gui/manabar_anim.png");
 
     int frame = 0;
     float time;

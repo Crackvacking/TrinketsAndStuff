@@ -16,21 +16,21 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.crackvacking.trinketsandstuff.block.entity.ModBlockEntities;
-import org.crackvacking.trinketsandstuff.block.entity.runecrafterblockentity;
+import org.crackvacking.trinketsandstuff.block.entity.RunecrafterBlockentity;
 import org.jetbrains.annotations.Nullable;
 
 
-public class runecrafterblock extends BlockWithEntity implements BlockEntityProvider {
+public class RunecrafterBlock extends BlockWithEntity implements BlockEntityProvider {
 
-    public runecrafterblock(Settings settings) {
+    public RunecrafterBlock(Settings settings) {
         super(settings);
     }
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof runecrafterblockentity) {
-                ItemScatterer.spawn(world, pos, (runecrafterblockentity)blockEntity);
+            if (blockEntity instanceof RunecrafterBlockentity) {
+                ItemScatterer.spawn(world, pos, (RunecrafterBlockentity)blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -71,11 +71,11 @@ public class runecrafterblock extends BlockWithEntity implements BlockEntityProv
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new runecrafterblockentity(pos,state);
+        return new RunecrafterBlockentity(pos,state);
     }
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.runecrafter_block_entity, runecrafterblockentity::tick);
+        return checkType(type, ModBlockEntities.runecrafter_block_entity, RunecrafterBlockentity::tick);
     }
 }
