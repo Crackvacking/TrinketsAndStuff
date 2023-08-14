@@ -6,8 +6,9 @@
   "mixins": [
   ],
   "client": [
+    "EntityDataSaver",
     "ExampleMixin",
-    "EntityDataSaver"
+    "RegisterPlayer"
   ],
   "injectors": {
     "defaultRequire": 1
