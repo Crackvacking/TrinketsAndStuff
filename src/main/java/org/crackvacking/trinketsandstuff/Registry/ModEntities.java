@@ -13,12 +13,13 @@ import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.entities.TestEntityModel;
 import org.crackvacking.trinketsandstuff.entities.TestEntityRenderer;
 import org.crackvacking.trinketsandstuff.entities.TestEntity;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
 
 public class ModEntities {
     public static final EntityModelLayer MODEL_CUBE_LAYER = new EntityModelLayer(new Identifier("entitytesting", "cube"), "main");
     public static final EntityType<TestEntity> testie = Registry.register(
             Registry.ENTITY_TYPE,
-            new Identifier("trinketsandstuff", "testie"),
+            new Identifier(ModConstants.MODID, "testie"),
             FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, TestEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
     );
 

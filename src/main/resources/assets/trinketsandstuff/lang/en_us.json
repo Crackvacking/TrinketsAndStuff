@@ -6,8 +6,14 @@
   "item.trinketsandstuff.mortuus":"Mortuus Rune",
   "item.trinketsandstuff.perdito":"Perdito Rune",
   "item.trinketsandstuff.terra":"Terra Rune",
-  "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff",
   "item.trinketsandstuff.runedust":"Rune Dust",
+
+  "item.trinketsandstuff.wand": "Wand",
+
+  "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff",
+
   "block.trinketsandstuff.runecrafter":"Rune Crafter",
+  "block.trinketsandstuff.manastone": "Manastone",
+  "block.trinketsandstuff.managlass": "Managlass",
   "gui.trinketsandstuff.runecrafter":"Rune Crafter"
 }

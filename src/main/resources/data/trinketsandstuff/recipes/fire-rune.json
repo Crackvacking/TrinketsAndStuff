@@ -4,27 +4,13 @@
     {
       "item": "minecraft:blaze_powder"
     },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    },
-    {
-      "item": ""
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "output": {
     "item": "trinketsandstuff:igni"

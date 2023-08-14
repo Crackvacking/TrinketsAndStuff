@@ -1,30 +1,17 @@
 {
   "type": "trinketsandstuff:runecrafter",
+  "time": 120,
   "ingredients": [
     {
       "item": "trinketsandstuff:runedust"
     },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    },
-    {
-      "item": "trinketsandstuff:runedust"
-    }
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
   "output": {
     "item": "minecraft:chest"

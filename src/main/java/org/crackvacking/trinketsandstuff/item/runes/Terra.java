@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class aqua extends Item {
+public class Terra extends Item {
 
-    public aqua(Settings settings) {
+    public Terra(Settings settings) {
         super(settings);
     }
     @Override

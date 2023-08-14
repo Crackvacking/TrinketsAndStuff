@@ -7,34 +7,49 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.crackvacking.trinketsandstuff.item.client.WandRenderer;
 import org.crackvacking.trinketsandstuff.item.runes.*;
+import org.crackvacking.trinketsandstuff.item.tools.Wand;
+import org.crackvacking.trinketsandstuff.util.ModConstants;
+import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
-import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.runecrafter;
+import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.*;
 
 
 public class ModItems {
-    private static final ItemGroup TAS = FabricItemGroupBuilder.create(new Identifier("trinketsandstuff", "tas"))
+    private static final ItemGroup TAS = FabricItemGroupBuilder.create(new Identifier(ModConstants.MODID, "tas"))
             .icon(() -> new ItemStack(ModItems.aqua)).build();
-    public static final aqua aqua = new aqua(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final igni igni = new igni(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final terra terra = new terra(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final anima anima = new anima(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final caelum caelum = new caelum(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final mortuus mortuus = new mortuus(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final perdito perdito = new perdito(new FabricItemSettings().group(TAS).maxCount(1));
-    public static final runeDust runedust = new runeDust(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Aqua aqua = new Aqua(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Igni igni = new Igni(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Terra terra = new Terra(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Anima anima = new Anima(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Caelum caelum = new Caelum(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Mortuus mortuus = new Mortuus(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final Perdito perdito = new Perdito(new FabricItemSettings().group(TAS).maxCount(16));
+    public static final RuneDust runedust = new RuneDust(new FabricItemSettings().group(TAS));
+
+    public static final Wand wand = new Wand(new FabricItemSettings().group(TAS).maxCount(1));
 
     public static void Register(){
+        //crafting items
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"aqua"), aqua);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"igni"), igni);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"terra"), terra);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"anima"), anima);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"caelum"), caelum);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"mortuus"), mortuus);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"perdito"), perdito);
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID,"runedust"), runedust);
 
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","aqua"),aqua);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","igni"),igni);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","terra"),terra);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","anima"),anima);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","caelum"),caelum);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","mortuus"),mortuus);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","perdito"),perdito);
-        Registry.register(Registry.ITEM,new Identifier("trinketsandstuff","runedust"),runedust);
-        Registry.register(Registry.ITEM, new Identifier("trinketsandstuff", "runecrafter"), new BlockItem(runecrafter, new FabricItemSettings().group(TAS).maxCount(1)));
+        //block items
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "runecrafter"), new BlockItem(runecrafter, new FabricItemSettings().group(TAS).maxCount(1)));
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "manastone"), new BlockItem(manastone, new FabricItemSettings().group(TAS)));
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "managlass"), new BlockItem(managlass, new FabricItemSettings().group(TAS)));
+
+        //tools
+        Registry.register(Registry.ITEM,new Identifier(ModConstants.MODID, "wand"), wand);
+
+        //GeoItemRenderer
+        GeoItemRenderer.registerItemRenderer(ModItems.wand, new WandRenderer());
     }
-    // Mody powinny być pisane w *python*
 }
