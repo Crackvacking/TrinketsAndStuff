@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "trinketsandstuff:block/yarrow_bottom"
+    },
+    "half=upper": {
+      "model": "trinketsandstuff:block/yarrow_top"
+    }
+  }
+}

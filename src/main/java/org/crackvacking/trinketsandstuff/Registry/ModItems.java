@@ -11,7 +11,9 @@ import org.crackvacking.trinketsandstuff.item.client.WandRenderer;
 import org.crackvacking.trinketsandstuff.item.runes.*;
 import org.crackvacking.trinketsandstuff.item.tools.Wand;
 import org.crackvacking.trinketsandstuff.util.ModConstants;
+import org.lwjgl.system.CallbackI;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
+import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Mod;
 
 import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.*;
 
@@ -27,7 +29,6 @@ public class ModItems {
     public static final Mortuus mortuus = new Mortuus(new FabricItemSettings().group(TAS).maxCount(16));
     public static final Perdito perdito = new Perdito(new FabricItemSettings().group(TAS).maxCount(16));
     public static final RuneDust runedust = new RuneDust(new FabricItemSettings().group(TAS));
-
     public static final Wand wand = new Wand(new FabricItemSettings().group(TAS).maxCount(1));
 
     public static void Register(){
@@ -45,6 +46,9 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "runecrafter"), new BlockItem(runecrafter, new FabricItemSettings().group(TAS).maxCount(1)));
         Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "manastone"), new BlockItem(manastone, new FabricItemSettings().group(TAS)));
         Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "managlass"), new BlockItem(managlass, new FabricItemSettings().group(TAS)));
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "sage"), new BlockItem(sage, new FabricItemSettings().group(TAS)));
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "lavendar"), new BlockItem(lavendar, new FabricItemSettings().group(TAS)));
+        Registry.register(Registry.ITEM, new Identifier(ModConstants.MODID, "yarrow"), new BlockItem(yarrow, new FabricItemSettings().group(TAS)));
 
         //tools
         Registry.register(Registry.ITEM,new Identifier(ModConstants.MODID, "wand"), wand);

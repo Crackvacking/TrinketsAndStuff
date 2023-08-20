@@ -11,9 +11,11 @@
   "item.trinketsandstuff.wand": "Wand",
 
   "itemGroup.trinketsandstuff.tas":"Trinkets and Stuff",
+  "gui.trinketsandstuff.runecrafter":"Rune Crafter",
 
   "block.trinketsandstuff.runecrafter":"Rune Crafter",
   "block.trinketsandstuff.manastone": "Manastone",
   "block.trinketsandstuff.managlass": "Managlass",
-  "gui.trinketsandstuff.runecrafter":"Rune Crafter"
+  "block.trinketsandstuff.sage": "Sage",
+  "block.trinketsandstuff.lavendar": "Lavendar"
 }

@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:block/cross",
+  "textures": {
+    "cross": "trinketsandstuff:block/yarrow_bottom"
+  }
+}
