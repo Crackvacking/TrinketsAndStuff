@@ -1,5 +1,6 @@
 package org.crackvacking.trinketsandstuff.block.entity;
 
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,11 +9,12 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,7 +24,7 @@ import org.crackvacking.trinketsandstuff.screen.RunecrafterScreenHandler;
 
 import java.util.Optional;
 
-public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class RunecrafterBlockentity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory =
             DefaultedList.ofSize(9, ItemStack.EMPTY);
 
@@ -66,7 +68,7 @@ public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHa
     }
     @Override
     public Text getDisplayName() {
-        return new TranslatableText("gui.trinketsandstuff.runecrafter");
+        return Text.translatable("gui.trinketsandstuff.runecrafter");
     }
 
     @Override
@@ -116,7 +118,7 @@ public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHa
         }
         
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput());
+                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput(null));
     }
 
     private static void craftItem(RunecrafterBlockentity entity) {
@@ -140,7 +142,7 @@ public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHa
             entity.removeStack(0,1);
 
 
-            entity.setStack(8, new ItemStack(match.get().getOutput().getItem(),
+            entity.setStack(8, new ItemStack(match.get().getOutput(null).getItem(),
                     entity.getStack(8).getCount() + 1));
 
             entity.resetProgress();
@@ -157,5 +159,10 @@ public class RunecrafterBlockentity extends BlockEntity implements NamedScreenHa
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
         return inventory.getStack(8).getMaxCount() > inventory.getStack(8).getCount();
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 }

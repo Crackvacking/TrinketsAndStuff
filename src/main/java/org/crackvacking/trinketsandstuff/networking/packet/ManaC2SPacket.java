@@ -5,8 +5,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.crackvacking.trinketsandstuff.util.IEntityDataSaver;
 import org.crackvacking.trinketsandstuff.util.ManaControll;
@@ -19,6 +19,6 @@ public class ManaC2SPacket {
         ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")+1, player);
         ManaControll.syncManaLimit(((IEntityDataSaver) player).getPersistentData().getInt("mana_limit")-1, player);
         // this is only for debug purposes - delete in release
-        player.sendMessage(new LiteralText("[LOG] Mana Status Updated!").fillStyle(Style.EMPTY.withColor(Formatting.AQUA)), false);
+        player.sendMessage(Text.literal("[LOG] Mana Status Updated!").fillStyle(Style.EMPTY.withColor(Formatting.AQUA)), false);
     }
 }

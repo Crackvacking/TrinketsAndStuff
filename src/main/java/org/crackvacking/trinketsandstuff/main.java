@@ -9,8 +9,10 @@ import org.crackvacking.trinketsandstuff.client.ManaHudOverlay;
 import org.crackvacking.trinketsandstuff.networking.ModMessages;
 import org.crackvacking.trinketsandstuff.screen.ModScreenHandlers;
 import org.crackvacking.trinketsandstuff.screen.RunecrafterScreen;
+import org.crackvacking.trinketsandstuff.screen.RunecrafterScreenHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.bernie.geckolib.GeckoLib;
 
 public class main implements ModInitializer {
 
@@ -24,7 +26,8 @@ public class main implements ModInitializer {
 		ModRecipes.Register();
 		ModCommands.Register();
 		ModBlockEntities.registerAllBlockEntities();
-
+		ModItemGroup.registerItemGroups();
+		GeckoLib.initialize();
 		ModMessages.registerS2CPackets();
 		ModMessages.registerC2SPackets();
 

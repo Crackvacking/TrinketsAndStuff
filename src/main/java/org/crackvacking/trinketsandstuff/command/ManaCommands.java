@@ -9,8 +9,7 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import org.crackvacking.trinketsandstuff.util.IEntityDataSaver;
 import org.crackvacking.trinketsandstuff.util.ManaControll;
 
@@ -70,13 +69,13 @@ public class ManaCommands {
 
     private static int getManaLimCommand(ServerCommandSource source){
         ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
-        player.sendMessage(new LiteralText("Your mana limit is §2"+ManaControll.getLimit((IEntityDataSaver) source.getEntity())), false);
+        player.sendMessage(Text.literal("Your mana limit is §2"+ManaControll.getLimit((IEntityDataSaver) source.getEntity())), false);
         return Command.SINGLE_SUCCESS;
     }
 
     private static int getManaCommand(ServerCommandSource source){
         ServerPlayerEntity player = (ServerPlayerEntity) source.getEntity();
-        player.sendMessage(new LiteralText("Your mana level is §3"+ManaControll.getMana((IEntityDataSaver) source.getEntity())), false);
+        player.sendMessage(Text.literal("Your mana level is §3" + ManaControll.getMana((IEntityDataSaver) source.getEntity())), false);
         return Command.SINGLE_SUCCESS;
     }
 }

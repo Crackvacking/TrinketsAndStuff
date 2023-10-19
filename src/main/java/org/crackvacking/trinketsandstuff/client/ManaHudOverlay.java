@@ -45,7 +45,7 @@ public class ManaHudOverlay implements HudRenderCallback {
         int displacement = MinecraftClient.getInstance().player.getStackInHand(Hand.OFF_HAND).isEmpty() ? 40 : 11;
 
         //Define texture
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         RenderSystem.setShaderTexture(0, MANA_HUD);
 

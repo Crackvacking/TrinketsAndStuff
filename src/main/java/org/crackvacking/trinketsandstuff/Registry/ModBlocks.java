@@ -9,9 +9,10 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ToolItem;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.crackvacking.trinketsandstuff.block.ManaGlass;
 import org.crackvacking.trinketsandstuff.block.Manastone;
 import org.crackvacking.trinketsandstuff.block.RunecrafterBlock;
@@ -19,9 +20,7 @@ import org.crackvacking.trinketsandstuff.block.vegetation.Lavendar;
 import org.crackvacking.trinketsandstuff.block.vegetation.Sage;
 import org.crackvacking.trinketsandstuff.block.vegetation.Yarrow;
 import org.crackvacking.trinketsandstuff.util.ModConstants;
-import org.lwjgl.system.CallbackI;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.classic.Mod;
-import software.bernie.shadowed.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+
 
 public class ModBlocks {
 
@@ -40,12 +39,12 @@ public class ModBlocks {
     }
 
     public static void Register() {
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "runecrafter"), runecrafter);
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "manastone"), manastone);
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "managlass"), managlass);
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "sage"), sage);
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "lavendar"), lavendar);
-        Registry.register(Registry.BLOCK, new Identifier(ModConstants.MODID, "yarrow"), yarrow);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "runecrafter"), runecrafter);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "manastone"), manastone);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "managlass"), managlass);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "sage"), sage);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "lavendar"), lavendar);
+        Registry.register(Registries.BLOCK, new Identifier(ModConstants.MODID, "yarrow"), yarrow);
         SetRenderLayers();
     }
 }
