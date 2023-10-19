@@ -18,9 +18,6 @@ import static org.crackvacking.trinketsandstuff.Registry.ModBlocks.*;
 
 
 public class ModItems {
-    private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(new Identifier(ModConstants.MODID, "tas"))
-            .icon(() -> new ItemStack(ModItems.igni))
-            .build();
     public static final Aqua aqua = new Aqua(new FabricItemSettings().maxCount(16));
     public static final Igni igni = new Igni(new FabricItemSettings().maxCount(16));
     public static final Terra terra = new Terra(new FabricItemSettings().maxCount(16));

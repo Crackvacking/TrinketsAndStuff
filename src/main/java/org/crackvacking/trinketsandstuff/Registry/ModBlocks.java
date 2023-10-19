@@ -4,7 +4,6 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,10 +22,9 @@ import org.crackvacking.trinketsandstuff.util.ModConstants;
 
 
 public class ModBlocks {
-
-    public static final RunecrafterBlock runecrafter = new RunecrafterBlock(FabricBlockSettings.of(Material.STONE).hardness(0.69f));
-    public static final Manastone manastone = new Manastone(FabricBlockSettings.of(Material.STONE).strength(2f, 4.2f).luminance(5).requiresTool());
-    public static final ManaGlass managlass = new ManaGlass(FabricBlockSettings.of(Material.GLASS).strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque());
+    public static final RunecrafterBlock runecrafter = new RunecrafterBlock(FabricBlockSettings.create().hardness(0.69f));
+    public static final Manastone manastone = new Manastone(FabricBlockSettings.create().strength(2f, 4.2f).luminance(5).requiresTool());
+    public static final ManaGlass managlass = new ManaGlass(FabricBlockSettings.create().strength(0.3f, 0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque());
     public static final Sage sage = new Sage(StatusEffects.LUCK, 2, FabricBlockSettings.copy(Blocks.DANDELION).breakInstantly().nonOpaque().noCollision());
     public static final Lavendar lavendar = new Lavendar(StatusEffects.HASTE, 5,FabricBlockSettings.copy(Blocks.DANDELION).breakInstantly().nonOpaque().noCollision());
     public static final Yarrow yarrow = new Yarrow(FabricBlockSettings.copy(Blocks.ROSE_BUSH).breakInstantly().nonOpaque().noCollision());

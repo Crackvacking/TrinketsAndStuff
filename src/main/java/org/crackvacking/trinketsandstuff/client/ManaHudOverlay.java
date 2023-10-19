@@ -3,11 +3,11 @@ package org.crackvacking.trinketsandstuff.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.client.gui.DrawableHelper;
 import org.crackvacking.trinketsandstuff.util.IEntityDataSaver;
 import org.crackvacking.trinketsandstuff.util.ManaControll;
 import org.crackvacking.trinketsandstuff.util.ModConstants;
@@ -20,7 +20,7 @@ public class ManaHudOverlay implements HudRenderCallback {
     int frame = 0;
     float time;
     @Override
-    public void onHudRender(MatrixStack matrixStack, float tickDelta) {
+    public void onHudRender(DrawContext context, float tickDelta) {
         int x = 0;
         int y = 0;
         MinecraftClient client = MinecraftClient.getInstance();
@@ -51,9 +51,9 @@ public class ManaHudOverlay implements HudRenderCallback {
 
         //Texture drawing
         if (MinecraftClient.getInstance().player.getStackInHand(Hand.MAIN_HAND).getItem()== wand){
-            DrawableHelper.drawTexture(matrixStack, x - 197 + displacement, y - 19, 123, 3, 58, 18, 180, 396);
-            DrawableHelper.drawTexture(matrixStack, x - 197 + displacement, y - 19, 64, 3+(22*frame), ManaControll.getScaledManaProgress((IEntityDataSaver) MinecraftClient.getInstance().player), 18, 180, 396);
-            DrawableHelper.drawTexture(matrixStack, x - 200 + displacement, y - 22, 0, 0, 62, 22, 180, 396);
+            context.drawTexture(MANA_HUD, x - 197 + displacement, y - 19, 123, 3, 58, 18, 180, 396);
+            context.drawTexture(MANA_HUD, x - 197 + displacement, y - 19, 64, 3+(22*frame), ManaControll.getScaledManaProgress((IEntityDataSaver) MinecraftClient.getInstance().player), 18, 180, 396);
+            context.drawTexture(MANA_HUD, x - 200 + displacement, y - 22, 0, 0, 62, 22, 180, 396);
         }
     }
 }

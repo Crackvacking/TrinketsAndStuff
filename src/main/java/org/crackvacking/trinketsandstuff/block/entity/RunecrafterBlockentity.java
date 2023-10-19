@@ -3,14 +3,19 @@ package org.crackvacking.trinketsandstuff.block.entity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,131 +26,116 @@ import net.minecraft.world.World;
 import org.crackvacking.trinketsandstuff.item.inventory.ImplementedInventory;
 import org.crackvacking.trinketsandstuff.recipe.RunecrafterRecipe;
 import org.crackvacking.trinketsandstuff.screen.RunecrafterScreenHandler;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
 public class RunecrafterBlockentity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
-    private final DefaultedList<ItemStack> inventory =
-            DefaultedList.ofSize(9, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+
+    private static final int INPUT_SLOT = 0;
+    private static final int OUTPUT_SLOT = 8;
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    public int maxProgress=72;
+    private int maxProgress = 72;
 
     public RunecrafterBlockentity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.runecrafter_block_entity, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
+            @Override
             public int get(int index) {
-                switch (index) {
-                    case 0:
-                        return RunecrafterBlockentity.this.progress;
-                    case 1:
-                        return RunecrafterBlockentity.this.maxProgress;
-                    default:
-                        return 0;
-                }
+                return switch (index) {
+                    case 0 -> RunecrafterBlockentity.this.progress;
+                    case 1 -> RunecrafterBlockentity.this.maxProgress;
+                    default -> 0;
+                };
             }
 
+            @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0:
-                        RunecrafterBlockentity.this.progress = value;
-                        break;
-                    case 1:
-                        RunecrafterBlockentity.this.maxProgress = value;
-                        break;
+                    case 0 -> RunecrafterBlockentity.this.progress = value;
+                    case 1 -> RunecrafterBlockentity.this.maxProgress = value;
                 }
             }
 
+            @Override
             public int size() {
-                return 2;
+                return 9;
             }
         };
     }
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return inventory;
-    }
-    @Override
-    public Text getDisplayName() {
-        return Text.translatable("gui.trinketsandstuff.runecrafter");
+
+    public ItemStack getRenderStack() {
+        if(this.getStack(OUTPUT_SLOT).isEmpty()) {
+            return this.getStack(INPUT_SLOT);
+        } else {
+            return this.getStack(OUTPUT_SLOT);
+        }
     }
 
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new RunecrafterScreenHandler(syncId, inv, this,this.propertyDelegate);
+    public void markDirty() {
+        world.updateListeners(pos, getCachedState(), getCachedState(), 3);
+        super.markDirty();
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(this.pos);
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return Text.literal("");
+    }
+
+    @Override
+    public DefaultedList<ItemStack> getItems() {
+        return inventory;
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
-        nbt.putInt("crafting.progress", progress);
+        nbt.putInt("runecrafter.progress", progress);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
-        Inventories.readNbt(nbt, inventory);
         super.readNbt(nbt);
-        progress = nbt.getInt("crafting.progress");
+        Inventories.readNbt(nbt, inventory);
+        progress = nbt.getInt("runecrafter.progress");
     }
 
-    public static void tick(World world, BlockPos pos, BlockState state, RunecrafterBlockentity entity) {
-        if(hasRecipe(entity)) {
-                entity.progress++;
-                if(entity.progress > entity.maxProgress) {
-                    craftItem(entity);
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new RunecrafterScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+    }
+
+    public void tick(World world, BlockPos pos, BlockState state) {
+        if(world.isClient()) {
+            return;
+        }
+
+        if(isOutputSlotEmptyOrReceivable()) {
+            if(this.hasRecipe()) {
+                this.increaseCraftProgress();
+                markDirty(world, pos, state);
+
+                if(hasCraftingFinished()) {
+                    this.craftItem();
+                    this.resetProgress();
                 }
-
+            } else {
+                this.resetProgress();
+            }
         } else {
-            entity.resetProgress();
-        }
-    }
-    private static boolean hasRecipe(RunecrafterBlockentity entity) {
-        World world = entity.world;
-        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
-        for (int i = 0; i < entity.inventory.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
-        Optional<RunecrafterRecipe> match = world.getRecipeManager()
-                .getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world);
-        try{
-            System.out.println(world.getRecipeManager().getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world).get().getId());
-        }
-        catch (Exception ignored){
-
-        }
-        
-        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput(null));
-    }
-
-    private static void craftItem(RunecrafterBlockentity entity) {
-        World world = entity.world;
-        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
-        for (int i = 0; i < entity.inventory.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
-        }
-
-        Optional<RunecrafterRecipe> match = world.getRecipeManager()
-                .getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inventory, world);
-
-        if(match.isPresent()) {
-            entity.removeStack(1,1);
-            entity.removeStack(2,1);
-            entity.removeStack(3,1);
-            entity.removeStack(4,1);
-            entity.removeStack(5,1);
-            entity.removeStack(6,1);
-            entity.removeStack(7,1);
-            entity.removeStack(0,1);
-
-
-            entity.setStack(8, new ItemStack(match.get().getOutput(null).getItem(),
-                    entity.getStack(8).getCount() + 1));
-
-            entity.resetProgress();
+            this.resetProgress();
+            markDirty(world, pos, state);
         }
     }
 
@@ -153,16 +143,66 @@ public class RunecrafterBlockentity extends BlockEntity implements ExtendedScree
         this.progress = 0;
     }
 
-    private static boolean canInsertItemIntoOutputSlot(SimpleInventory inventory, ItemStack output) {
-        return inventory.getStack(8).getItem() == output.getItem() || inventory.getStack(8).isEmpty();
+    private void craftItem() {
+        Optional<RecipeEntry<RunecrafterRecipe>> recipe = getCurrentRecipe();
+
+        this.removeStack(0, 1);
+        this.removeStack(1, 1);
+        this.removeStack(2, 1);
+        this.removeStack(3, 1);
+        this.removeStack(4, 1);
+        this.removeStack(5, 1);
+        this.removeStack(6, 1);
+        this.removeStack(7, 1);
+
+        this.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().value().getResult(null).getItem(),
+                getStack(OUTPUT_SLOT).getCount() + recipe.get().value().getResult(null).getCount()));
     }
 
-    private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
-        return inventory.getStack(8).getMaxCount() > inventory.getStack(8).getCount();
+    private boolean hasCraftingFinished() {
+        return progress >= maxProgress;
+    }
+
+    private void increaseCraftProgress() {
+        progress++;
+    }
+
+    private boolean hasRecipe() {
+        Optional<RecipeEntry<RunecrafterRecipe>> recipe = getCurrentRecipe();
+
+        return recipe.isPresent() && canInsertAmountIntoOutputSlot(recipe.get().value().getResult(null))
+                && canInsertItemIntoOutputSlot(recipe.get().value().getResult(null).getItem());
+    }
+
+    private Optional<RecipeEntry<RunecrafterRecipe>> getCurrentRecipe() {
+        SimpleInventory inv = new SimpleInventory(this.size());
+        for(int i = 0; i < this.size(); i++) {
+            inv.setStack(i, this.getStack(i));
+        }
+
+        return getWorld().getRecipeManager().getFirstMatch(RunecrafterRecipe.Type.INSTANCE, inv, getWorld());
+    }
+
+    private boolean canInsertItemIntoOutputSlot(Item item) {
+        return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
+    }
+
+    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
+        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
+    }
+
+    private boolean isOutputSlotEmptyOrReceivable() {
+        return this.getStack(OUTPUT_SLOT).isEmpty() || this.getStack(OUTPUT_SLOT).getCount() < this.getStack(OUTPUT_SLOT).getMaxCount();
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
     }
 
     @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-        buf.writeBlockPos(pos);
+    public NbtCompound toInitialChunkDataNbt() {
+        return createNbt();
     }
 }

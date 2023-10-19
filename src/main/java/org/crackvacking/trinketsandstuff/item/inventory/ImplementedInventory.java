@@ -32,8 +32,6 @@ public interface ImplementedInventory extends SidedInventory {
      */
     DefaultedList<ItemStack> getItems();
 
-    // Creation
-
     /**
      * Creates an inventory from the item list.
      *
@@ -192,6 +190,7 @@ public interface ImplementedInventory extends SidedInventory {
         if (stack.getCount() > getMaxCountPerStack()) {
             stack.setCount(getMaxCountPerStack());
         }
+        markDirty();
     }
 
     /**

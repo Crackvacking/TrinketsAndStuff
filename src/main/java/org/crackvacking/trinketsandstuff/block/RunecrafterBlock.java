@@ -76,6 +76,7 @@ public class RunecrafterBlock extends BlockWithEntity implements BlockEntityProv
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.runecrafter_block_entity, RunecrafterBlockentity::tick);
+        return validateTicker(type, ModBlockEntities.runecrafter_block_entity,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 }

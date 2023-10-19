@@ -2,17 +2,19 @@
   "type": "trinketsandstuff:runecrafter",
   "ingredients": [
     {
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
+      "item": "minecraft:blaze_powder",
       "item": "minecraft:blaze_powder"
-    },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+    }
   ],
   "output": {
-    "item": "trinketsandstuff:igni"
+    "item": "trinketsandstuff:igni",
+    "count": 3
   }
 }

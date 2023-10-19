@@ -31,8 +31,9 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.19.4:4.2'
-	modImplementation 'io.github.jamalam360:multiblocklib:0.2.0'
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:5.3.0"
+	modImplementation 'software.bernie.geckolib:geckolib-fabric-1.20.2:4.2.3'
+	//modImplementation 'io.github.jamalam360:multiblocklib:0.2.0'
 }
 
 processResources {
