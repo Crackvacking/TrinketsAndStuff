@@ -27,7 +27,7 @@ public class ModItemGroup {
 
                     entries.add(ModItems.mortuus);
                     entries.add(ModItems.perdito);
-
+                    entries.add(ModBlocks.lavendar);
                     entries.add(ModItems.runedust);
                     entries.add(ModItems.terra);
                     entries.add(ModItems.wand);
