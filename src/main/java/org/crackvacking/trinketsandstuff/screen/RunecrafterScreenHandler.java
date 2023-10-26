@@ -20,13 +20,13 @@ public class RunecrafterScreenHandler extends ScreenHandler {
     private final RunecrafterBlockentity blockEntity;
     public RunecrafterScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
         this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()),
-                new ArrayPropertyDelegate(2));
+                new ArrayPropertyDelegate(9));
     }
 
     public RunecrafterScreenHandler(int syncId, PlayerInventory playerInventory,
                                      BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(ModScreenHandlers.RUNECRAFTER_SCREEN_HANDLER, syncId);
-        checkSize(((Inventory) blockEntity), 2);
+        checkSize(((Inventory) blockEntity), 9);
         this.inventory = ((Inventory) blockEntity);
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = arrayPropertyDelegate;
