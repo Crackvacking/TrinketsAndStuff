@@ -25,11 +25,17 @@ public class RunecrafterRecipe implements Recipe<SimpleInventory> {
 
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        if(world.isClient()) {
-            return false;
-        }
+        if(world.isClient()) {return false;}
 
-        return recipeItems.get(0).test(inventory.getStack(0));
+
+        return recipeItems.get(0).test(inventory.getStack(0))
+                && recipeItems.get(1).test(inventory.getStack(1))
+                && recipeItems.get(3).test(inventory.getStack(2))
+                && recipeItems.get(3).test(inventory.getStack(3))
+                && recipeItems.get(1).test(inventory.getStack(4))
+                && recipeItems.get(3).test(inventory.getStack(5))
+                && recipeItems.get(3).test(inventory.getStack(6))
+                && recipeItems.get(1).test(inventory.getStack(7));
     }
 
     @Override
@@ -74,7 +80,7 @@ public class RunecrafterRecipe implements Recipe<SimpleInventory> {
         public static final String ID = "runecrafter";
 
         public static final Codec<RunecrafterRecipe> CODEC = RecordCodecBuilder.create(in -> in.group(
-                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 8).fieldOf("ingredients").forGetter(RunecrafterRecipe::getIngredients),
+                validateAmount(Ingredient.DISALLOW_EMPTY_CODEC, 9).fieldOf("ingredients").forGetter(RunecrafterRecipe::getIngredients),
                 RecipeCodecs.CRAFTING_RESULT.fieldOf("output").forGetter(r -> r.output)
         ).apply(in, RunecrafterRecipe::new));
 

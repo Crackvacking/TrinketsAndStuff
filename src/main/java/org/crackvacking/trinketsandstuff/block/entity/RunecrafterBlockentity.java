@@ -3,7 +3,6 @@ package org.crackvacking.trinketsandstuff.block.entity;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -28,16 +27,18 @@ import org.crackvacking.trinketsandstuff.recipe.RunecrafterRecipe;
 import org.crackvacking.trinketsandstuff.screen.RunecrafterScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class RunecrafterBlockentity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
 
-    private static final int INPUT_SLOT = 0;
+    private static final int[] INPUT_SLOTS = {0,1,2,3,4,5,6,7};
     private static final int OUTPUT_SLOT = 8;
 
     protected final PropertyDelegate propertyDelegate;
-    private int progress = 0;
+    public int progress = 0;
     private int maxProgress = 72;
 
     public RunecrafterBlockentity(BlockPos pos, BlockState state) {
@@ -59,20 +60,19 @@ public class RunecrafterBlockentity extends BlockEntity implements ExtendedScree
                     case 1 -> RunecrafterBlockentity.this.maxProgress = value;
                 }
             }
-
             @Override
             public int size() {
                 return 9;
             }
         };
     }
-
-    public ItemStack getRenderStack() {
-        if(this.getStack(OUTPUT_SLOT).isEmpty()) {
-            return this.getStack(INPUT_SLOT);
-        } else {
-            return this.getStack(OUTPUT_SLOT);
+    public List<ItemStack> getRenderStack() {
+        List<ItemStack> list = new ArrayList<>();
+        for (int i = 0; i < INPUT_SLOTS.length; i++){
+            list.add(this.getStack(i));
         }
+        list.add(this.getStack(OUTPUT_SLOT));
+        return list;
     }
 
     @Override
