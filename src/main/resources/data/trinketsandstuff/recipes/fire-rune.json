@@ -1,17 +1,30 @@
 {
   "type": "trinketsandstuff:runecrafter",
   "ingredients": [
-    {
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder",
-      "item": "minecraft:blaze_powder"
-    }
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      },
+      {
+        "item": "minecraft:blaze_powder"
+      }
   ],
   "output": {
     "item": "trinketsandstuff:igni",
