@@ -21,8 +21,12 @@
   "entrypoints": {
     "main": [
       "org.crackvacking.trinketsandstuff.main"
+    ],
+    "rei_client": [
+      "org.crackvacking.trinketsandstuff.compat.TASREIClientPlugin"
     ]
-  },
+    },
+
   "mixins": [
     "trinketsandstuff.mixins.json"
   ],
